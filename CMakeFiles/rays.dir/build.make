@@ -34,14 +34,11 @@ RM = /usr/bin/cmake -E remove -f
 # Escaping for special characters.
 EQUALS = =
 
-# The program to use to edit the cache.
-CMAKE_EDIT_COMMAND = /usr/bin/ccmake
-
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/reed/cs184
+CMAKE_SOURCE_DIR = /home/reed/cs184/rays
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/reed/cs184
+CMAKE_BINARY_DIR = /home/reed/cs184/rays
 
 # Include any dependencies generated for this target.
 include CMakeFiles/rays.dir/depend.make
@@ -54,17 +51,17 @@ include CMakeFiles/rays.dir/flags.make
 
 CMakeFiles/rays.dir/scene.cpp.o: CMakeFiles/rays.dir/flags.make
 CMakeFiles/rays.dir/scene.cpp.o: scene.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/reed/cs184/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/reed/cs184/rays/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/rays.dir/scene.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/rays.dir/scene.cpp.o -c /home/reed/cs184/scene.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/rays.dir/scene.cpp.o -c /home/reed/cs184/rays/scene.cpp
 
 CMakeFiles/rays.dir/scene.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/rays.dir/scene.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/reed/cs184/scene.cpp > CMakeFiles/rays.dir/scene.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/reed/cs184/rays/scene.cpp > CMakeFiles/rays.dir/scene.cpp.i
 
 CMakeFiles/rays.dir/scene.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/rays.dir/scene.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/reed/cs184/scene.cpp -o CMakeFiles/rays.dir/scene.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/reed/cs184/rays/scene.cpp -o CMakeFiles/rays.dir/scene.cpp.s
 
 CMakeFiles/rays.dir/scene.cpp.o.requires:
 .PHONY : CMakeFiles/rays.dir/scene.cpp.o.requires
@@ -84,7 +81,7 @@ rays_EXTERNAL_OBJECTS =
 
 rays: CMakeFiles/rays.dir/scene.cpp.o
 rays: CMakeFiles/rays.dir/build.make
-rays: /usr/lib64/libgtest.so
+rays: /usr/lib/libgtest.a
 rays: CMakeFiles/rays.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable rays"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/rays.dir/link.txt --verbose=$(VERBOSE)
@@ -101,6 +98,6 @@ CMakeFiles/rays.dir/clean:
 .PHONY : CMakeFiles/rays.dir/clean
 
 CMakeFiles/rays.dir/depend:
-	cd /home/reed/cs184 && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/reed/cs184 /home/reed/cs184 /home/reed/cs184 /home/reed/cs184 /home/reed/cs184/CMakeFiles/rays.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/reed/cs184/rays && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/reed/cs184/rays /home/reed/cs184/rays /home/reed/cs184/rays /home/reed/cs184/rays /home/reed/cs184/rays/CMakeFiles/rays.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/rays.dir/depend
 

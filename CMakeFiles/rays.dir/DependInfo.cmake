@@ -4,7 +4,7 @@ SET(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 SET(CMAKE_DEPENDS_CHECK_CXX
-  "/home/reed/cs184/scene.cpp" "/home/reed/cs184/CMakeFiles/rays.dir/scene.cpp.o"
+  "/home/reed/cs184/rays/scene.cpp" "/home/reed/cs184/rays/CMakeFiles/rays.dir/scene.cpp.o"
   )
 SET(CMAKE_CXX_COMPILER_ID "GNU")
 

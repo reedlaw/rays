@@ -6,7 +6,13 @@
 
 #IncludeRegexTransform: 
 
-/home/reed/cs184/scene.cpp
+/home/reed/cs184/rays/scene.cpp
+gtest/gtest.h
+-
+vector.cpp
+/home/reed/cs184/rays/vector.cpp
+
+/home/reed/cs184/rays/vector.cpp
 gtest/gtest.h
 -
 

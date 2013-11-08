@@ -46,14 +46,11 @@ RM = /usr/bin/cmake -E remove -f
 # Escaping for special characters.
 EQUALS = =
 
-# The program to use to edit the cache.
-CMAKE_EDIT_COMMAND = /usr/bin/ccmake
-
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/reed/cs184
+CMAKE_SOURCE_DIR = /home/reed/cs184/rays
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/reed/cs184
+CMAKE_BINARY_DIR = /home/reed/cs184/rays
 
 #=============================================================================
 # Target rules for target CMakeFiles/rays.dir
@@ -62,7 +59,7 @@ CMAKE_BINARY_DIR = /home/reed/cs184
 CMakeFiles/rays.dir/all:
 	$(MAKE) -f CMakeFiles/rays.dir/build.make CMakeFiles/rays.dir/depend
 	$(MAKE) -f CMakeFiles/rays.dir/build.make CMakeFiles/rays.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/reed/cs184/CMakeFiles  1
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/reed/cs184/rays/CMakeFiles  1
 	@echo "Built target rays"
 .PHONY : CMakeFiles/rays.dir/all
 
@@ -72,9 +69,9 @@ all: CMakeFiles/rays.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/rays.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/reed/cs184/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/reed/cs184/rays/CMakeFiles 1
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/rays.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/reed/cs184/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/reed/cs184/rays/CMakeFiles 0
 .PHONY : CMakeFiles/rays.dir/rule
 
 # Convenience name for target.

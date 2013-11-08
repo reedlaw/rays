@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "vector.cpp"
 
 void render() {
   // while (!sampler.generateSample(&sample)) {
@@ -12,6 +13,13 @@ void render() {
 TEST(Render, Positive) {
   ASSERT_EQ(1, 1);
 }
+
+TEST(Vector, Constructor) {
+  Vector v1(1.0f, 0.0f, 0.5f);
+  Vector v2(1.0f, 0.0f, 0.5f);
+  ASSERT_EQ(v1, v2);
+}
+
 
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
