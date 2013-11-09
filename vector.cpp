@@ -1,3 +1,4 @@
+#include <math.h>
 #include "floating_point.h"
 
 class Vector {
@@ -11,15 +12,14 @@ public:
     z=z1;
   }
 
-  inline bool operator== (const Vector &rhs) const {
+  inline bool operator== (const Vector &rhs) const{
     return ( (FloatingPoint<RawType>(x).AlmostEquals(FloatingPoint<RawType>(rhs.x))) &&
              (FloatingPoint<RawType>(y).AlmostEquals(FloatingPoint<RawType>(rhs.y))) &&
              (FloatingPoint<RawType>(z).AlmostEquals(FloatingPoint<RawType>(rhs.z))) );
   }
 
-  inline Vector operator+ (const Vector &rhs) const {
-    Vector ret (x+rhs.x, y+rhs.y, z+rhs.z);
-    return ret;
+  inline virtual Vector operator+ (const Vector &rhs) const{
+    return Vector(x+rhs.x, y+rhs.y, z+rhs.z);
   }
 
   inline Vector operator- (const Vector &rhs) const {
@@ -34,6 +34,15 @@ public:
 
   inline Vector operator/ (const float &scalar) const {
     Vector ret (x/scalar, y/scalar, z/scalar);
+    return ret;
+  }
+
+  inline Vector normalize() const {
+    if (x==0.0f && y==0.0f && z==0.0f) {
+      throw 20;
+    }
+    float length = sqrt((x*x) + (y*y) + (z*z)); 
+    Vector ret (x/length, y/length, z/length);
     return ret;
   }
 

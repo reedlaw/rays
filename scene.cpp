@@ -1,4 +1,7 @@
 #include "vector.cpp"
+#include "point.cpp"
+#include "normal.cpp"
+#include "ray.cpp"
 
 void render() {
   // while (!sampler.generateSample(&sample)) {
