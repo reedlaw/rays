@@ -43,10 +43,21 @@ public:
     if (x==0.0f && y==0.0f && z==0.0f) {
       throw 20;
     }
-    float length = sqrt((x*x) + (y*y) + (z*z)); 
+    float length = sqrt((x*x) + (y*y) + (z*z));
     Vector ret (x/length, y/length, z/length);
     return ret;
   }
+
+  static Vector cross (const Vector &vec1, const Vector &vec2) {
+    Vector ret (vec1.y*vec2.z - vec1.z*vec2.y, vec1.z*vec2.x - vec1.x*vec2.z, vec1.x*vec2.y - vec1.y*vec2.x);
+    return ret;
+  }
+
+  inline float operator* (const Vector &vec) const {
+    float ret = x*vec.x + y*vec.y + z*vec.z;
+    return ret;
+  }
+
 
 private:
   float dir;

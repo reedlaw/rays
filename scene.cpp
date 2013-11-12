@@ -10,9 +10,11 @@
 #include "sample.cpp"
 #include "sampler.cpp"
 #include "shape.cpp"
+#include "sphere.cpp"
 #include "camera.cpp"
 #include "parser.cpp"
 #include "film.cpp"
+#include "ray_tracer.cpp"
 
 Sampler sampler;
 Film film;
@@ -21,14 +23,15 @@ void render(const Parser parser) {
   int w = parser.width;
   int h = parser.height;
   Camera camera = parser.camera;
+  RayTracer rayTracer(parser.sphere);
   film.init(w, h);
-  for (int i=0; i<w; i++) {
-    for (int j=0; j<h; j++) {
+  for (int i=0; i<h; i++) {
+    for (int j=0; j<w; j++) {
       Sample sample(i, j);
       Color color(1.0f, 0.0f, 0.0f);
       Ray ray;
       camera.generateRay(sample, &ray);
-      // raytracer.trace(ray, &color);
+      rayTracer.trace(ray, &color);
       film.commit(sample, color);
     }
   }

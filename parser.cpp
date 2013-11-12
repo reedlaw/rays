@@ -10,6 +10,7 @@ class Parser {
 public:
   const char* fileName;
   Camera camera;
+  Sphere sphere;
   stack <Matrix> transformStack;
   int width;
   int height;
@@ -59,10 +60,8 @@ void Parser::readFile(const char* filename)
         float values[10]; // Position and color for light, colors for others
         bool validinput; // Validity of input 
 
-        // Process the light, add it to database.
-        // Lighting Command
         if (cmd == "size") {
-          validinput = readValues(s, 2, values); // Position/color for lts.
+          validinput = readValues(s, 2, values);
           if (validinput) {
             width = values[0];
             height = values[1];
@@ -75,11 +74,14 @@ void Parser::readFile(const char* filename)
             Vector center = Vector(values[3], values[4], values[5]);
             Vector up = Vector(values[6], values[7], values[8]);
             float fov = values[9];
-            camera = Camera(eye, center, up, fov);
+            camera = Camera(eye, center, up, fov, width, height);
           }
-        }
-
-        else {
+        } else if (cmd == "sphere") {
+          validinput = readValues(s,4,values);
+          if (validinput) {
+            sphere = Sphere(Vector(values[0], values[1], values[2]), values[3]);
+          }
+        } else {
           cerr << "Unknown Command: " << cmd << " Skipping \n"; 
         }
       }

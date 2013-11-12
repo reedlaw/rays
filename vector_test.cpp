@@ -35,6 +35,28 @@ TEST(Vector, ScalarDivision) {
   ASSERT_EQ(vec/scalar, divided);
 }
 
+TEST(Vector, CrossProduct1) {
+  Vector vec1(0.5f,0.f,0.5f);
+  Vector vec2(0.0f,0.5f,0.f);
+  Vector result(-0.25,0.f,0.25f);
+  Vector cross = Vector::cross(vec1, vec2);
+  ASSERT_EQ(cross, result);
+}
+
+TEST(Vector, CrossProduct2) {
+  Vector vec1(1.f,2.f,3.f);
+  Vector vec2(-3.f,2.f,-1.f);
+  Vector result(-8.f,-8.f,8.f);
+  Vector cross = Vector::cross(vec1, vec2);
+  ASSERT_EQ(cross, result);
+}
+
+TEST(Vector, DotProduct) {
+  Vector v(-4.f,-4.f,4.f);
+  float dotProduct = v*v;
+  ASSERT_EQ(48.f, dotProduct);
+}
+
 TEST(Vector, Normalization) {
   Vector vec(3.f, 1.f, 2.f);
   Vector norm = vec.normalize();
