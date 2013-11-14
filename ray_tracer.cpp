@@ -1,17 +1,15 @@
 class RayTracer {
 public:
-  Sphere sphere;
+  World world;
 
-  RayTracer(Sphere s) {
-    sphere = s;
+  RayTracer(World w) {
+    world = w;
   }
   void trace(Ray& ray, Color* color);
 };
 
 void RayTracer::trace(Ray& ray, Color* color) {
-  if (sphere.intersect(ray)) {
-    *color = Color(1.f, 0.f, 0.f);
-  } else {
-    *color = Color(0.f, 0.f, 0.f);
-  }
+  world.getNearestIntersection(ray);
+  float red = (ray.t * 100.f + 140.f)/10;
+  *color = Color(red, 0.f, 0.f);
 }

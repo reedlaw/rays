@@ -1,3 +1,4 @@
+#include <math.h>
 class Camera {
 public:
   Vector lookFrom;
@@ -21,18 +22,30 @@ public:
     fovx = fovy * aspect_ratio;
   }
   void generateRay(Sample& sample, Ray* ray);
+  float getAlpha(float j);
+  float getBeta(float i);
 };
 
 void Camera::generateRay(Sample& sample, Ray* ray) {
-  Vector a = lookFrom - Vector(0.f, 0.f, 0.f);
+  Vector a = lookFrom - lookAt;
   Vector b = up;
   Vector w = a.normalize();
   Vector u = Vector::cross(b,w).normalize();
   Vector v = Vector::cross(w,u);
-  float alpha = tan(fovx/2)*(sample.x-(width/2)/width/2);
-  float beta = tan(fovy/2)*((height/2)-sample.y/height/2);
+  float alpha = getAlpha(sample.x);
+  float beta = getBeta(sample.y);
   Vector direction = lookFrom + ((u*alpha)+(v*beta)-w).normalize();
-  // printf("i %f, j %f\n", sample.y, sample.x);
-  // printf("Direction: %f %f %f\n", direction.x, direction.y, direction.z);
   *ray = Ray(lookFrom, direction, 0.f, 1000000000.f);
+}
+
+float Camera::getAlpha(float j) {
+  float radians = (fovx * 3.14159265 / 180.0);
+  float alpha = (tan(radians/2)) * ( (j-(width/2)) / (width/2) );
+  return alpha;
+}
+
+float Camera::getBeta(float i) {
+  float radians = (fovy * 3.14159265 / 180.0);
+  float beta = (tan(radians/2)) * ( ((width/2)-i) / (width/2) );
+  return beta;
 }

@@ -35,3 +35,49 @@ TEST(Sphere, IntersectionNegative) {
   Sphere sphere = Sphere(Vector(4.f,-5.f,1.f), 0.15f);
   ASSERT_FALSE(sphere.intersect(ray));
 }
+
+TEST(Sphere, GetIntersecitonPoint) {
+  float a=1.f;
+  float b=-2.f;
+  float c=1.f;
+  float result = 1.f;
+  ASSERT_EQ(Sphere::getIntersectionPoint(a, b, c), result);
+}
+
+TEST(Sphere, GetIntersecitonPointTwoRootsSame) {
+  float a=2.f;
+  float b=-4.f;
+  float c=2.f;
+  float result = 1.f;
+  ASSERT_EQ(Sphere::getIntersectionPoint(a, b, c), result);
+}
+
+TEST(Sphere, GetIntersecitonPointTwoPositiveRoots) {
+  float a=1.f;
+  float b=-4.f;
+  float c=3.f;
+  float result = 1.f;
+  ASSERT_EQ(Sphere::getIntersectionPoint(a, b, c), result);
+}
+
+TEST(Sphere, GetIntersecitonPointOnePositiveOneNegativeRoot) {
+  float a=1.f;
+  float b=1.f;
+  float c=-6.f;
+  float result = 2.f;
+  ASSERT_EQ(Sphere::getIntersectionPoint(a, b, c), result);
+}
+
+TEST(Sphere, CheckIfDiscriminantNegative) {
+  float a=4.f;
+  float b=4.f;
+  float c=2.f;
+  ASSERT_FALSE(Sphere::isDiscriminantPositive(a, b, c));
+}
+
+TEST(Sphere, CheckIfDiscriminantPositive) {
+  float a=1.f;
+  float b=4.f;
+  float c=2.f;
+  ASSERT_TRUE(Sphere::isDiscriminantPositive(a, b, c));
+}

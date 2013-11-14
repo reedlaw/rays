@@ -10,7 +10,7 @@ class Parser {
 public:
   const char* fileName;
   Camera camera;
-  Sphere sphere;
+  World world;
   stack <Matrix> transformStack;
   int width;
   int height;
@@ -79,7 +79,7 @@ void Parser::readFile(const char* filename)
         } else if (cmd == "sphere") {
           validinput = readValues(s,4,values);
           if (validinput) {
-            sphere = Sphere(Vector(values[0], values[1], values[2]), values[3]);
+            world.spheres.push_back(Sphere(Vector(values[0], values[1], values[2]), values[3]));
           }
         } else {
           cerr << "Unknown Command: " << cmd << " Skipping \n"; 

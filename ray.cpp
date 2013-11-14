@@ -2,7 +2,7 @@ class Ray {
 public:
   Vector pos;
   Vector dir;
-  float t_min, t_max;
+  float t_min, t, t_max; // t_min < t < t_max
 
   inline Ray() {
   }

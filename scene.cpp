@@ -1,4 +1,5 @@
 #include <cstdio>
+#include <vector>
 #include "vector.cpp"
 #include "point.cpp"
 #include "normal.cpp"
@@ -12,6 +13,7 @@
 #include "shape.cpp"
 #include "sphere.cpp"
 #include "camera.cpp"
+#include "world.cpp"
 #include "parser.cpp"
 #include "film.cpp"
 #include "ray_tracer.cpp"
@@ -23,7 +25,7 @@ void render(const Parser parser) {
   int w = parser.width;
   int h = parser.height;
   Camera camera = parser.camera;
-  RayTracer rayTracer(parser.sphere);
+  RayTracer rayTracer(parser.world);
   film.init(w, h);
   for (int i=0; i<h; i++) {
     for (int j=0; j<w; j++) {
