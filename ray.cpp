@@ -12,5 +12,10 @@ public:
     t_min = t_min1;
     t_max = t_max1;
   }
-  // ray(t) = pos + t*dir
+  Vector getPoint();
 };
+
+Vector Ray::getPoint() {
+  Vector ret = pos + (dir*t);
+  return ret;
+}

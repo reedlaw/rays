@@ -81,6 +81,12 @@ void Parser::readFile(const char* filename)
           if (validinput) {
             world.spheres.push_back(Sphere(Vector(values[0], values[1], values[2]), values[3]));
           }
+        } else if (cmd == "directional") {
+          validinput = readValues(s,6,values);
+          if (validinput) {
+            world.lights.push_back(Light(Vector(values[0], values[1], values[2]),
+                                         Color(values[3], values[4], values[5])));
+          }
         } else {
           cerr << "Unknown Command: " << cmd << " Skipping \n"; 
         }

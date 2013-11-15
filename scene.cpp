@@ -1,3 +1,6 @@
+#define T_MIN 0.01f
+#define T_MAX 1000000000.f
+
 #include <cstdio>
 #include <vector>
 #include "vector.cpp"
@@ -8,12 +11,13 @@
 #include "transformation.cpp"
 #include "color.cpp"
 #include "brdf.cpp"
+#include "light.cpp"
 #include "sample.cpp"
 #include "sampler.cpp"
 #include "shape.cpp"
 #include "sphere.cpp"
-#include "camera.cpp"
 #include "world.cpp"
+#include "camera.cpp"
 #include "parser.cpp"
 #include "film.cpp"
 #include "ray_tracer.cpp"

@@ -2,6 +2,7 @@ class Sphere {
 public:
   Vector pos;
   float radius;
+  Vector intersectionPoint;
 
   Sphere() {
   }
@@ -36,7 +37,9 @@ bool Sphere::intersect(Ray& ray) {
   float b = (ray.dir*L)*2;
   float c = L*L - (radius*radius);
   if (isDiscriminantPositive(a,b,c)) {
-    ray.t = getIntersectionPoint(a,b,c);
+    float t = getIntersectionPoint(a,b,c);
+    intersectionPoint = ray.getPoint();
+    return true;
   } else {
     return false;
   }
