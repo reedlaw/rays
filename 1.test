@@ -11,7 +11,7 @@ size 640 480
 #camera -4 0 1 0 0 1 0 0 1 45
 #camera -4 -4 4 1 0 0 0 1 0 3
 #      lookFrom  lookAt  up      fov
-camera 0 0 -4     0 -.2 0   0 1 0   30
+camera 0 0 -1     0 -.07 0   0 1 0   30
 
 
 # lighting/material definitions

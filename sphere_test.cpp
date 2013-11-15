@@ -11,7 +11,7 @@ TEST(Sphere, Intersection) {
 
 TEST(Sphere, Intersection2) {
   Vector pos = Vector(0.f, 0.f, -4.f);
-  Vector dir = Vector(0.f, -.2f, 0.f);
+  Vector dir = Vector(0.f, 0.f, 1.f);
   Ray ray = Ray(pos, dir, T_MIN, T_MAX);
   Sphere sphere = Sphere(Vector(0.f, 0.f, 0.f), 0.15f);
   ASSERT_TRUE(sphere.intersect(ray));

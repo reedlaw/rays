@@ -38,7 +38,7 @@ public:
     } else if (r2 > 0) {
       return r2;
     } else {
-      return 0.f;
+      return r1;
     }      
   }
 
@@ -57,12 +57,8 @@ bool Sphere::intersect(Ray& ray) {
   float a = ray.dir*ray.dir;
   float b = (ray.dir*L)*2;
   float c = L*L - (radius*radius);
-    printf("a %f\n", a);
-    printf("b %f\n", b);
-    printf("c %f\n", c);
   if (isDiscriminantPositive(a,b,c)) {
     ray.t = getIntersectionPoint(a,b,c);
-    printf("ray.t %f\n", ray.t);
     intersectionPoint = ray.getPoint();
     return true;
   } else {

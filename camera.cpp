@@ -34,7 +34,7 @@ void Camera::generateRay(Sample& sample, Ray* ray) {
   Vector v = Vector::cross(w,u);
   float alpha = getAlpha(sample.x);
   float beta = getBeta(sample.y);
-  Vector direction = lookFrom + ((u*alpha)+(v*beta)-w).normalize();
+  Vector direction = ((u*alpha)+(v*beta)-w).normalize();
   *ray = Ray(lookFrom, direction, T_MIN, T_MAX);
 }
 

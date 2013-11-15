@@ -24,6 +24,9 @@ bool World::findNearestIntersection(Ray& ray) {
 }
 
 bool World::isVisible() {
+  // printf("lastIntersected.intersectionPoint: %f %f %f\n",
+  //        lastIntersected.intersectionPoint.x,
+  //        lastIntersected.intersectionPoint.y, lastIntersected.intersectionPoint.z);
   for(int i=0; i < lights.size(); i++) {
     lights[i].generateLightRay(lastIntersected.intersectionPoint);
     for(int j=0; j < spheres.size(); j++) {
