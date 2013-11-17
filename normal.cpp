@@ -1,5 +1,12 @@
 class Normal : public Vector {
 public:
+  Normal() : Vector() {
+  }
+  Normal(const Vector &vec) {
+    x=vec.x;
+    y=vec.y;
+    z=vec.z;
+  }
   Normal(float x1, float y1, float z1) : Vector(x1, y1, z1) {
   }
 

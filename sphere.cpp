@@ -1,16 +1,20 @@
-class Sphere {
+class Sphere : public Primitive {
 public:
-  Vector pos;
+  Vector position;
   float radius;
-  Vector intersectionPoint;
+  Material material;
 
-  Sphere() {
-  }
-  Sphere(Vector p, float r) {
-    pos = p;
+  Sphere() {};
+  Sphere(Vector p, float r, Material m) {
+    position = p;
     radius = r;
-  }
-  bool intersect(Ray& ray);
+    material = m;
+  };
+  inline Material getMaterial() {
+    return material;
+  };
+  bool intersect(Ray& ray, LocalGeometry& local);
+  bool isIntersected(Ray& ray);
 
   inline static bool twoRealPositiveRoots(float r1, float r2, float& t) {
     if (r1 > 0 && r2 > 0) {
@@ -52,14 +56,30 @@ public:
   }
 };
 
-bool Sphere::intersect(Ray& ray) {
-  Vector L = ray.pos - pos;
-  float a = ray.dir*ray.dir;
-  float b = (ray.dir*L)*2;
+bool Sphere::intersect(Ray& ray, LocalGeometry& local) {
+  Vector L = ray.position - position;
+  float a = ray.direction*ray.direction;
+  float b = (ray.direction*L)*2;
   float c = L*L - (radius*radius);
   if (isDiscriminantPositive(a,b,c)) {
     ray.t = getIntersectionPoint(a,b,c);
-    intersectionPoint = ray.getPoint();
+    local.position = ray.getPoint();
+    Vector normal = (local.position - position).normalize();
+    local.normal = static_cast<Normal>(normal);
+    return true;
+  } else {
+    return false;
+  }
+}
+
+bool Sphere::isIntersected(Ray& ray) {
+  Vector L = ray.position - position;
+  float a = ray.direction*ray.direction;
+  float b = (ray.direction*L)*2;
+  float c = L*L - (radius*radius);
+  float r1 = (-b+sqrt(b*b-4*a*c))/(2*a);
+  float r2 = (-b-sqrt(b*b-4*a*c))/(2*a);
+  if (r1 > 0 || r2 > 0) {
     return true;
   } else {
     return false;

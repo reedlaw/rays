@@ -1,43 +1,50 @@
 class World {
 public:
-  std::vector<Sphere> spheres;
+  std::vector<Primitive*> primitives;
   std::vector<Light> lights;
-  Sphere lastIntersected;
-  bool findNearestIntersection(Ray& ray);
-  bool isVisible();
-  Color illuminationModel();
+  Color ambient;
+  bool intersect(Ray& ray, Intersection& intersection);
+  bool isVisible(Light& light, Intersection& intersection);
+  Color illuminationModel(Intersection& intersection);
 };
 
-bool World::findNearestIntersection(Ray& ray) {
+bool World::intersect(Ray& ray, Intersection& intersection) {
   float minDistance = 1000000.f;
   bool isHit = false;
-  for(int i=0; i < spheres.size(); i++) {
-    if (spheres[i].intersect(ray)) {
+  LocalGeometry local = LocalGeometry();
+  for(int i=0; i < primitives.size(); i++) {
+    if (primitives[i]->intersect(ray, local)) {
       if (ray.t > 0 && ray.t < minDistance) {
         minDistance = ray.t;
         isHit = true;
-        lastIntersected = spheres[i];
+        intersection.primitive = primitives[i];
+        intersection.local = local;
       }
     }
   }
   return isHit;
 }
 
-bool World::isVisible() {
-  // printf("lastIntersected.intersectionPoint: %f %f %f\n",
-  //        lastIntersected.intersectionPoint.x,
-  //        lastIntersected.intersectionPoint.y, lastIntersected.intersectionPoint.z);
-  for(int i=0; i < lights.size(); i++) {
-    lights[i].generateLightRay(lastIntersected.intersectionPoint);
-    for(int j=0; j < spheres.size(); j++) {
-      if (spheres[j].intersect(lights[i].shadowRay)) {
-        return false;
-      }
+bool World::isVisible(Light& light, Intersection& intersection) {
+  Ray shadowRay = light.generateShadowRay(intersection.local.position);
+  for(int j=0; j < primitives.size(); j++) {
+    if (primitives[j]->isIntersected(shadowRay)) {
+      return false;
     }
   }
   return true;
 }
 
-Color World::illuminationModel() {
-  return Color(1.f, 0.f, 0.f);
+Color World::illuminationModel(Intersection& intersection) {
+  Color totalColor(0.f, 0.f, 0.f);
+  for(int i=0; i < lights.size(); i++) {
+    if (isVisible(lights[i], intersection)) {
+      float normalDotDirection = intersection.local.normal * lights[i].position;
+      Material material = intersection.primitive->getMaterial();
+      Color diffuse = lights[i].color * std::max(normalDotDirection, 0.f);
+      totalColor = totalColor + diffuse;
+    }
+  }
+  totalColor = totalColor + ambient;
+  return totalColor;
 }

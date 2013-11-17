@@ -12,6 +12,7 @@ public:
   Camera camera;
   World world;
   stack <Matrix> transformStack;
+  Material material;
   int width;
   int height;
   int maxDepth;
@@ -76,10 +77,37 @@ void Parser::readFile(const char* filename)
             float fov = values[9];
             camera = Camera(eye, center, up, fov, width, height);
           }
+        } else if (cmd == "ambient") {
+          validinput = readValues(s,3,values);
+          if (validinput) {
+            world.ambient = Color(values[0], values[1], values[2]);
+          }
+        } else if (cmd == "diffuse") {
+          validinput = readValues(s,3,values);
+          if (validinput) {
+            material.diffuse = Color(values[0], values[1], values[2]);
+          }
+        } else if (cmd == "specular") {
+          validinput = readValues(s,3,values);
+          if (validinput) {
+            material.specular = Color(values[0], values[1], values[2]);
+          }
+        } else if (cmd == "shininess") {
+          validinput = readValues(s,1,values);
+          if (validinput) {
+            material.shininess = values[0];
+          }
+        } else if (cmd == "emission") {
+          validinput = readValues(s,3,values);
+          if (validinput) {
+            material.emission = Color(values[0], values[1], values[2]);
+          }
         } else if (cmd == "sphere") {
           validinput = readValues(s,4,values);
           if (validinput) {
-            world.spheres.push_back(Sphere(Vector(values[0], values[1], values[2]), values[3]));
+            Vector pos = Vector(values[0], values[1], values[2]);
+            Material mat = material;
+            world.primitives.push_back(new Sphere(pos, values[3], mat));
           }
         } else if (cmd == "directional") {
           validinput = readValues(s,6,values);

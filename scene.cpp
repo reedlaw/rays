@@ -3,6 +3,7 @@
 
 #include <cstdio>
 #include <vector>
+#include <algorithm>
 #include "vector.cpp"
 #include "point.cpp"
 #include "normal.cpp"
@@ -10,11 +11,13 @@
 #include "matrix.cpp"
 #include "transformation.cpp"
 #include "color.cpp"
-#include "brdf.cpp"
+#include "material.cpp"
 #include "light.cpp"
 #include "sample.cpp"
 #include "sampler.cpp"
-#include "shape.cpp"
+#include "local_geometry.cpp"
+#include "primitive.cpp"
+#include "intersection.cpp"
 #include "sphere.cpp"
 #include "world.cpp"
 #include "camera.cpp"
@@ -34,7 +37,7 @@ void render(const Parser parser) {
   for (int i=0; i<h; i++) {
     for (int j=0; j<w; j++) {
       Sample sample(i, j);
-      Color color(1.0f, 0.0f, 0.0f);
+      Color color(0.0f, 0.0f, 0.0f);
       Ray ray;
       camera.generateRay(sample, &ray);
       rayTracer.trace(ray, &color);

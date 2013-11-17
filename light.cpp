@@ -1,20 +1,18 @@
 class Light {
 public:
-  Vector dir;
-  Ray lightRay;
-  Ray shadowRay;
+  Vector position;
   Color color;
 
   Light(Vector p, Color c) {
-    dir = p;
+    position = p;
     color = c;
   }
-  void generateLightRay(Vector localPoint);
+  Ray generateShadowRay(Vector localPoint);
 };
 
-void Light::generateLightRay(Vector localPoint) {
-  shadowRay = Ray(localPoint, dir, T_MIN, T_MAX);
-  shadowRay.t = 0.0001f;
-  Vector offset = shadowRay.getPoint();
-  lightRay = Ray(dir, offset, T_MIN, T_MAX);
+Ray Light::generateShadowRay(Vector localPoint) {
+  Ray localRay = Ray(localPoint, position, T_MIN, T_MAX);
+  localRay.t = 0.0001f;
+  Vector offsetPoint = localRay.getPoint();
+  return Ray(offsetPoint, position, T_MIN, T_MAX);
 }

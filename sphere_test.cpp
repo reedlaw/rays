@@ -1,4 +1,6 @@
 #include <gtest/gtest.h>
+#include "local_geometry.cpp"
+#include "primitive.cpp"
 #include "sphere.cpp"
 
 TEST(Sphere, Intersection) {
@@ -6,7 +8,8 @@ TEST(Sphere, Intersection) {
   Vector dir = Vector(0.f, 1.f, 0.f);
   Ray ray = Ray(pos, dir, T_MIN, T_MAX);
   Sphere sphere = Sphere(dir, 0.15f);
-  ASSERT_TRUE(sphere.intersect(ray));
+  LocalGeometry local = LocalGeometry();
+  ASSERT_TRUE(sphere.intersect(ray, local));
 }
 
 TEST(Sphere, Intersection2) {
@@ -14,7 +17,8 @@ TEST(Sphere, Intersection2) {
   Vector dir = Vector(0.f, 0.f, 1.f);
   Ray ray = Ray(pos, dir, T_MIN, T_MAX);
   Sphere sphere = Sphere(Vector(0.f, 0.f, 0.f), 0.15f);
-  ASSERT_TRUE(sphere.intersect(ray));
+  LocalGeometry local = LocalGeometry();
+  ASSERT_TRUE(sphere.intersect(ray, local));
 }
 
 TEST(Sphere, IntersectionTangent) {
@@ -23,7 +27,8 @@ TEST(Sphere, IntersectionTangent) {
   Ray ray = Ray(pos, dir, T_MIN, T_MAX);
   Vector center = Vector(0.f, 1.f, 0.f);
   Sphere sphere = Sphere(center, 0.15f);
-  ASSERT_TRUE(sphere.intersect(ray));
+  LocalGeometry local = LocalGeometry();
+  ASSERT_TRUE(sphere.intersect(ray, local));
 }
 
 TEST(Sphere, IntersectionTangentNegative) {
@@ -32,7 +37,8 @@ TEST(Sphere, IntersectionTangentNegative) {
   Ray ray = Ray(pos, dir, T_MIN, T_MAX);
   Vector center = Vector(0.f, 1.f, 0.f);
   Sphere sphere = Sphere(center, 0.15f);
-  ASSERT_FALSE(sphere.intersect(ray));
+  LocalGeometry local = LocalGeometry();
+  ASSERT_FALSE(sphere.intersect(ray, local));
 }
 
 TEST(Sphere, IntersectionNegative) {
@@ -40,7 +46,8 @@ TEST(Sphere, IntersectionNegative) {
   Vector dir = Vector(0.f, 1.f, 0.f);
   Ray ray = Ray(pos, dir, T_MIN, T_MAX);
   Sphere sphere = Sphere(Vector(4.f,-5.f,1.f), 0.15f);
-  ASSERT_FALSE(sphere.intersect(ray));
+  LocalGeometry local = LocalGeometry();
+  ASSERT_FALSE(sphere.intersect(ray, local));
 }
 
 TEST(Sphere, GetIntersecitonPoint) {
